@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Bloodline</string>
+
+    <string name="register_title">Tạo tài khoản mới</string>
+    <string name="register_button">Đăng ký</string>
+    <string name="no_register">Chưa có tài khoản?</string>
+
+    <string name="full_name_label">Họ và tên</string>
+    <string name="full_name_hint">Nhập họ và tên đầy đủ</string>
+    <string name="email_label">Email</string>
+    <string name="email_hint">Nhập email của bạn</string>
+    <string name="phone_label">Số điện thoại</string>
+    <string name="phone_hint">Nhập số điện thoại</string>
+    <string name="address_label">Địa chỉ</string>
+    <string name="address_hint">Nhập địa chỉ (tùy chọn)</string>
+    <string name="gender_label">Giới tính</string>
+    <string name="gender_hint">Chọn giới tính</string>
+    <string name="gender_male">Nam </string>
+    <string name="gender_female">Nữ</string>
+    <string name="date_of_birth_label">Ngày sinh</string>
+    <string name="date_of_birth_hint">YYYY-MM-DD</string>
+    <string name="password_label">Mật khẩu</string>
+    <string name="password_hint">Nhập mật khẩu</string>
+    <string name="confirm_password_label">Nhập lại mật khẩu</string>
+    <string name="confirm_password_hint">Nhập lại mật khẩu</string>
+
+    <string name="login_title">Đăng nhập tài khoản</string>
+    <string name="account_already">Đã có tài khoản?</string>
+    <string name="login_button">Đăng nhập</string>
+    <string name="forget_password">Quên mật khẩu?</string>
+
+
+</resources>
