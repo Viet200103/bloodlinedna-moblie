@@ -1,30 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="false"
+    android:id="@+id/main"
+    android:background="#F5FAFD">
 
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_gravity="center"
-        android:orientation="vertical"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/register"
+        <!-- Top Bar -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_button" />
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/login"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bloodline"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <!-- Tagline -->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Công nghệ xét nghiệm ADN hàng đầu Việt Nam"-->
+<!--            android:textColor="#3F51B5"-->
+<!--            android:background="@drawable/tag_background"-->
+<!--            android:textSize="12sp"-->
+<!--            android:paddingHorizontal="10dp"-->
+<!--            android:paddingVertical="4dp"-->
+<!--            android:layout_marginTop="24dp" />-->
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <!-- Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giải mã huyết thống"
+                android:textColor="#000000"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gắn kết gia đình"
+                android:textColor="#2CB995"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginVertical="24dp"
+                android:text="Hệ thống quản lý xét nghiệm DNA hiện đại, chính xác và bảo mật tuyệt đối. Khám phá nguồn gốc, sức khỏe và mối quan hệ huyết thống với công nghệ tiên tiến nhất."
+                android:textColor="#555555"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Buttons -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_button" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xem các Dịch vụ"
+                android:backgroundTint="#1A2E47"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/activity_main_login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_button"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="#1A2E47"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

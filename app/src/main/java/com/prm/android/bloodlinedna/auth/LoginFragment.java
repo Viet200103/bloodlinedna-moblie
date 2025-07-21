@@ -103,8 +103,7 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
                         .putString(Constants.TOKEN_KEY, authResponse.getToken())
                         .apply();
 
-                showError(authResponse.getToken());
-
+                requireActivity().finish();
             } else {
                 showError("Đăng nhập không thành công, vui lòng thử lại!");
             }

@@ -28,12 +28,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
-        findViewById(R.id.register).setOnClickListener(v -> {
-            openAuthActivity(AuthActivity.REGISTER);
-        });
-
-        findViewById(R.id.login).setOnClickListener(v -> {
+        findViewById(R.id.activity_main_login_button).setOnClickListener(v -> {
             openAuthActivity(AuthActivity.SIGN_IN);
         });
     }
