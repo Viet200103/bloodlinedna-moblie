@@ -1,19 +1,17 @@
 package com.prm.android.bloodlinedna.auth;
 
-import android.util.Log;
 import android.util.Patterns;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.prm.android.bloodlinedna.BuildConfig;
 import com.prm.android.bloodlinedna.Constants;
 import com.prm.android.bloodlinedna.OkHttpClientProvider;
 import com.prm.android.bloodlinedna.models.LoginRequest;
+import com.prm.android.bloodlinedna.models.UserRegisterModel;
 
 import java.io.IOException;
 
@@ -25,17 +23,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okio.BufferedSource;
 
 public class AuthViewModel extends ViewModel {
     private final OkHttpClient client = OkHttpClientProvider.getInstance();
     private final String authUrl = BuildConfig.API_BASE_URL + "/auth";
     private final Gson gson = new Gson();
-    private OnAuthResponseResult authResultListener;
 
     public final MutableLiveData<Integer> action = new MutableLiveData<>();
 
-    public void signIn(String username, String password) {
+    public void signIn(String username, String password, OnAuthResponseResult responseResult) {
         LoginRequest loginModel = new LoginRequest(username, password);
 
         RequestBody requestBody = RequestBody.create(
@@ -55,7 +51,7 @@ public class AuthViewModel extends ViewModel {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 authResponse.setStatus(Constants.UNDEFINED_ERROR);
                 authResponse.setError(e.getMessage());
-                notifyResult(authResponse);
+                responseResult.onAuthResponse(authResponse);
             }
 
             @Override
@@ -72,16 +68,54 @@ public class AuthViewModel extends ViewModel {
                     authResponse.setError(e.getMessage());
                 }
 
-                notifyResult(authResponse);
+                responseResult.onAuthResponse(authResponse);
             }
         });
     }
 
-    private void notifyResult(AuthResponse authResponse) {
-        if (authResponse != null) {
-            authResultListener.onAuthResponse(authResponse);
-        }
+    public void register(UserRegisterModel model, OnAuthResponseResult responseResult) {
+        RequestBody requestBody = RequestBody.create(
+                gson.toJson(model),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+
+        Request request = new Request.Builder()
+                .url(authUrl + "/register")
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            final AuthResponse authResponse = new AuthResponse();
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                authResponse.setStatus(Constants.UNDEFINED_ERROR);
+                authResponse.setError(e.getMessage());
+                responseResult.onAuthResponse(authResponse);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                try(ResponseBody ignored = response.body()){
+                    if (response.code() == 200) {
+                        authResponse.setStatus(response.code());
+                    } else {
+                        throw new Exception("Đăng ký không thành công");
+                    }
+                } catch (Exception e) {
+                    authResponse.setStatus(response.code());
+                    authResponse.setError(e.getMessage());
+                }
+                responseResult.onAuthResponse(authResponse);
+            }
+        });
     }
+
+//    private void notifyResult(AuthResponse authResponse) {
+//        if (authResponse != null) {
+//            authResultListener.onAuthResponse(authResponse);
+//        }
+//    }
     public void validateConfirmPassword(String password, String confirmPassword) throws Exception {
         if (!password.equals(confirmPassword)) {
             throw new Exception("Mật khẩu xác nhận không khớp");
@@ -97,8 +131,8 @@ public class AuthViewModel extends ViewModel {
             throw new Exception("Mật khẩu phải có ít nhất 6 ký tự");
         }
 
-         if (!password.matches(".*[A-Z][a-z][0-9][!@#$%^&*()_+=|<>?{}\\[\\]~-].*")) {
-             throw new Exception("Mật khẩu phải chứa ít nhất một chữ in hoa, chữ thường, ký tự đặc biệt");
+         if (!password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=|<>?{}\\[\\]~-]).{8,}$")) {
+             throw new Exception("Mật khẩu phải có tối thiểu 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt.");
          }
 
         return password;
@@ -118,9 +152,5 @@ public class AuthViewModel extends ViewModel {
 
     public interface OnAuthResponseResult {
         void onAuthResponse(AuthResponse authResponse);
-    }
-
-    public void setAuthResponseResult(OnAuthResponseResult authResultListener) {
-        this.authResultListener = authResultListener;
     }
 }

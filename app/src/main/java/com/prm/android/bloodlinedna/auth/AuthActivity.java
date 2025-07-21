@@ -45,15 +45,17 @@ public class AuthActivity extends AppCompatActivity {
         viewPager2.setOffscreenPageLimit(1);
         viewPager2.setAdapter(stateAdapter);
         viewPager2.setUserInputEnabled(false);
+        viewPager2.setSaveEnabled(false);
+        viewPager2.setSaveFromParentEnabled(false);
 
         authViewModel.action.setValue(this.getIntent().getIntExtra(ACTION_KEY, SIGN_IN));
         authViewModel.action.observe(this, action -> {
             switch (action) {
                 case SIGN_IN:
-                    viewPager2.setCurrentItem(SIGN_IN, true);
+                    viewPager2.setCurrentItem(SIGN_IN, false);
                     break;
                 case REGISTER:
-                    viewPager2.setCurrentItem(REGISTER, true);
+                    viewPager2.setCurrentItem(REGISTER, false);
                     break;
                 default:
                     throw new IllegalArgumentException();

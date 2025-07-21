@@ -1,12 +1,9 @@
 package com.prm.android.bloodlinedna.auth;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -44,7 +41,7 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         authViewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
-        authViewModel.setAuthResponseResult(this);
+
     }
 
     @Override
@@ -65,7 +62,7 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
         });
 
         processing.observe(this.getViewLifecycleOwner(), isProcessing -> {
-            loginButton.setEnabled(!isProcessing);
+//            loginButton.setEnabled(!isProcessing);
             if (!isProcessing) return;
 
             generalErrorView.setVisibility(View.GONE);
@@ -76,6 +73,7 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
             } catch (Exception e) {
                 emailInput.setError(e.getMessage());
                 emailInput.requestFocus();
+                processing.setValue(false);
                 return;
             }
 
@@ -84,14 +82,8 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
                 password = passwordInput.getText().toString();
             }
 
-            authViewModel.signIn(email, password);
+            authViewModel.signIn(email, password, this);
         });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        authViewModel.setAuthResponseResult(null);
     }
 
     @Override
