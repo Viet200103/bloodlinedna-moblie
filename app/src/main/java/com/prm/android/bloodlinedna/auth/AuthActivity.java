@@ -23,8 +23,6 @@ public class AuthActivity extends AppCompatActivity {
     public static final int SIGN_IN = 0;
     public static final int REGISTER = 1;
 
-    private AuthViewModel authViewModel;
-
     private final AuthStateAdapter stateAdapter = new AuthStateAdapter(this);
 
     @Override
@@ -33,7 +31,7 @@ public class AuthActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_auth);
 
-        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        AuthViewModel authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

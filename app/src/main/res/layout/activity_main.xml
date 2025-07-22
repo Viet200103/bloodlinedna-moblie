@@ -83,6 +83,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/activity_main_view_service_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Xem các Dịch vụ"
@@ -95,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_button"
+                android:visibility="invisible"
                 android:backgroundTint="#FFFFFF"
                 android:textColor="#1A2E47"/>
         </LinearLayout>

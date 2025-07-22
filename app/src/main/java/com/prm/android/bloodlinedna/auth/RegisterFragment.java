@@ -1,7 +1,5 @@
 package com.prm.android.bloodlinedna.auth;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -43,6 +41,8 @@ public class RegisterFragment extends Fragment implements AuthViewModel.OnAuthRe
     private AppCompatTextView generalErrorView;
 
     private Gender selectedGender;
+
+    private String selectedBirthTime = null;
 
     private final MutableLiveData<Boolean> processing = new MutableLiveData<>();
 
@@ -107,7 +107,7 @@ public class RegisterFragment extends Fragment implements AuthViewModel.OnAuthRe
                 model.setEmail(email);
                 model.setPassword(password);
                 model.setPhoneNumber(getTextFromInput(phoneInput));
-                model.setDateOfBirth(getTextFromInput(dateOfBirthInput));
+                model.setDateOfBirth(selectedBirthTime);
                 model.setAddress(getTextFromInput(addressInput));
                 model.setGender(selectedGender.getValue());
 
@@ -157,8 +157,8 @@ public class RegisterFragment extends Fragment implements AuthViewModel.OnAuthRe
 
             datePicker.addOnPositiveButtonClickListener(selection -> {
                 Instant instant = Instant.ofEpochMilli(selection);
-                String isoString = instant.toString();
-                dateOfBirthInput.setText(isoString);
+                selectedBirthTime = instant.toString();
+                dateOfBirthInput.setText(datePicker.getHeaderText());
             });
         });
     }

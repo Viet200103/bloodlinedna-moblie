@@ -1,5 +1,7 @@
 package com.prm.android.bloodlinedna.auth;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Patterns;
 
 import androidx.annotation.NonNull;
@@ -9,8 +11,10 @@ import androidx.lifecycle.ViewModel;
 import com.google.gson.Gson;
 import com.prm.android.bloodlinedna.BuildConfig;
 import com.prm.android.bloodlinedna.Constants;
+import com.prm.android.bloodlinedna.DnaPrincipal;
 import com.prm.android.bloodlinedna.OkHttpClientProvider;
 import com.prm.android.bloodlinedna.models.LoginRequest;
+import com.prm.android.bloodlinedna.models.User;
 import com.prm.android.bloodlinedna.models.UserRegisterModel;
 
 import java.io.IOException;
@@ -111,11 +115,24 @@ public class AuthViewModel extends ViewModel {
         });
     }
 
-//    private void notifyResult(AuthResponse authResponse) {
-//        if (authResponse != null) {
-//            authResultListener.onAuthResponse(authResponse);
-//        }
-//    }
+    public void savePrincipal(AuthResponse authResponse, SharedPreferences preferences) {
+        preferences.edit()
+                .putString(Constants.TOKEN_KEY, authResponse.getToken())
+                .apply();
+
+        User user = authResponse.getUser();
+
+        if (user != null) {
+            String raw = gson.toJson(authResponse.getUser());
+
+            preferences.edit()
+                    .putString(Constants.USER_KEY, raw)
+                    .apply();
+        }
+
+        DnaPrincipal.loadFromStorage(preferences);
+    }
+
     public void validateConfirmPassword(String password, String confirmPassword) throws Exception {
         if (!password.equals(confirmPassword)) {
             throw new Exception("Mật khẩu xác nhận không khớp");

@@ -16,7 +16,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.prm.android.bloodlinedna.Constants;
+import com.prm.android.bloodlinedna.MessageEvent;
 import com.prm.android.bloodlinedna.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Objects;
 
@@ -89,24 +92,25 @@ public class LoginFragment extends Fragment implements AuthViewModel.OnAuthRespo
     @Override
     public void onAuthResponse(AuthResponse authResponse) {
         requireActivity().runOnUiThread(() -> {
-            processing.setValue(false);
 
             if (authResponse.getStatus() == Constants.UNDEFINED_ERROR) {
                 showError("Đã xảy ra lỗi khi đăng nhập, vui lòng thử lại");
             }
 
-            if (authResponse.getToken() != null) {
+            if (authResponse.getStatus() == 200 && authResponse.getToken() != null) {
+                SharedPreferences preferences = requireActivity()
+                        .getApplicationContext()
+                        .getSharedPreferences(Constants.PRINCIPAL_KEY, Context.MODE_PRIVATE);
 
-                SharedPreferences preferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
+                authViewModel.savePrincipal(authResponse, preferences);
 
-                preferences.edit()
-                        .putString(Constants.TOKEN_KEY, authResponse.getToken())
-                        .apply();
-
+                EventBus.getDefault().post(new MessageEvent("OK", "auth"));
                 requireActivity().finish();
             } else {
                 showError("Đăng nhập không thành công, vui lòng thử lại!");
             }
+
+            processing.setValue(false);
         });
     }
 
