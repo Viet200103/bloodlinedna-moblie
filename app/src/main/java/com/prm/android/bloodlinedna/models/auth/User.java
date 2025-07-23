@@ -1,28 +1,25 @@
-package com.prm.android.bloodlinedna.models;
+package com.prm.android.bloodlinedna.models.auth;
 
-public class UserRegisterModel {
+import org.jetbrains.annotations.NotNull;
 
+public class User {
+
+    private String id;
     private String fullName;
     private String email;
     private String phoneNumber;
     private String dateOfBirth;
-    private String address;
     private int gender;
+    private String address;
+    private boolean isActive;
+    private String roleName;
 
-    private String password;
-
-    public UserRegisterModel() {
-
+    public String getId() {
+        return id;
     }
 
-    public UserRegisterModel(String fullName, String email, String phoneNumber, String dateOfBirth, String address, int gender, String password) {
-        this.fullName = fullName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.gender = gender;
-        this.password = password;
+    public void setId(@NotNull  String id) {
+        this.id = id;
     }
 
     public String getFullName() {
@@ -57,14 +54,6 @@ public class UserRegisterModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getGender() {
         return gender;
     }
@@ -73,11 +62,27 @@ public class UserRegisterModel {
         this.gender = gender;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Xem các Dịch vụ"
-                android:backgroundTint="#1A2E47"
+                android:backgroundTint="@color/bl_primary"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="10dp"/>
 

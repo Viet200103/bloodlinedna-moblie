@@ -1,4 +1,4 @@
-package com.prm.android.bloodlinedna.models;
+package com.prm.android.bloodlinedna.models.auth;
 
 import androidx.annotation.NonNull;
 

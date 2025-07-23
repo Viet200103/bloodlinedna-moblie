@@ -193,7 +193,7 @@
             <Spinner
                 android:id="@+id/fragment_register_gender_input"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@drawable/bg_input"
                 android:paddingHorizontal="12dp"/>
         </LinearLayout>
@@ -255,8 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_login_button"
-            android:backgroundTint="#0099FF"
+            android:background="@drawable/bl_button_primary"
             android:text="@string/register_button"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"

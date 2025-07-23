@@ -1,10 +1,9 @@
 package com.prm.android.bloodlinedna;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.prm.android.bloodlinedna.models.User;
+import com.prm.android.bloodlinedna.models.auth.User;
 
 public class DnaPrincipal {
 

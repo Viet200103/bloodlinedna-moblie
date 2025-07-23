@@ -1,6 +1,6 @@
 package com.prm.android.bloodlinedna.auth;
 
-import com.prm.android.bloodlinedna.models.User;
+import com.prm.android.bloodlinedna.models.auth.User;
 
 public class AuthResponse {
     private String error;

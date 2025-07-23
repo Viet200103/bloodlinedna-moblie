@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bl_card_bg">#FFFFFFFF</color>
+    <color name="bl_text_primary">#000000</color>
+    <color name="bl_text_secondary">#555555</color>
+    <color name="bl_divider">#E0E0E0</color>
+    <color name="bl_price">#0038FF</color>
+    <color name="bl_primary">#1976D2</color>
+    <color name="bl_primary_pressed">#115AA3</color>
 </resources>

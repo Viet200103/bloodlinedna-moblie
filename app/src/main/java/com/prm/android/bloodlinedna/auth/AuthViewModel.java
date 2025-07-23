@@ -1,6 +1,5 @@
 package com.prm.android.bloodlinedna.auth;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Patterns;
 
@@ -13,9 +12,9 @@ import com.prm.android.bloodlinedna.BuildConfig;
 import com.prm.android.bloodlinedna.Constants;
 import com.prm.android.bloodlinedna.DnaPrincipal;
 import com.prm.android.bloodlinedna.OkHttpClientProvider;
-import com.prm.android.bloodlinedna.models.LoginRequest;
-import com.prm.android.bloodlinedna.models.User;
-import com.prm.android.bloodlinedna.models.UserRegisterModel;
+import com.prm.android.bloodlinedna.models.auth.LoginRequest;
+import com.prm.android.bloodlinedna.models.auth.User;
+import com.prm.android.bloodlinedna.models.auth.UserRegisterModel;
 
 import java.io.IOException;
 

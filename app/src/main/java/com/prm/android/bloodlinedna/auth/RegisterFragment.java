@@ -19,8 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.prm.android.bloodlinedna.Constants;
 import com.prm.android.bloodlinedna.R;
-import com.prm.android.bloodlinedna.models.Gender;
-import com.prm.android.bloodlinedna.models.UserRegisterModel;
+import com.prm.android.bloodlinedna.models.auth.Gender;
+import com.prm.android.bloodlinedna.models.auth.UserRegisterModel;
 
 import java.time.Instant;
 import java.util.ArrayList;

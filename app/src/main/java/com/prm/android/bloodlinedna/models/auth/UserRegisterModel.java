@@ -1,25 +1,28 @@
-package com.prm.android.bloodlinedna.models;
+package com.prm.android.bloodlinedna.models.auth;
 
-import org.jetbrains.annotations.NotNull;
+public class UserRegisterModel {
 
-public class User {
-
-    private String id;
     private String fullName;
     private String email;
     private String phoneNumber;
     private String dateOfBirth;
-    private int gender;
     private String address;
-    private boolean isActive;
-    private String roleName;
+    private int gender;
 
-    public String getId() {
-        return id;
+    private String password;
+
+    public UserRegisterModel() {
+
     }
 
-    public void setId(@NotNull  String id) {
-        this.id = id;
+    public UserRegisterModel(String fullName, String email, String phoneNumber, String dateOfBirth, String address, int gender, String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.gender = gender;
+        this.password = password;
     }
 
     public String getFullName() {
@@ -54,14 +57,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -70,19 +65,19 @@ public class User {
         this.address = address;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public int getGender() {
+        return gender;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Khiên -->
+    <path
+        android:fillColor="#0A5DF4"
+        android:pathData="M12,2L3,5v6c0,5.55 3.84,10.74 9,12 5.16-1.26 9-6.45 9-12V5l-9-3zM12,20c-3.93-1.02-7-5.06-7-9.7V6.3l7-2.33 7,2.33v3.99C19,14.94 15.93,18.98 12,20z" />
+
+    <!-- Dấu check -->
+    <path
+        android:fillColor="#0A5DF4"
+        android:pathData="M10.29,13.29L8.7,11.7l-1.41,1.41 3,3 6-6 -1.41-1.41z" />
+</vector>
