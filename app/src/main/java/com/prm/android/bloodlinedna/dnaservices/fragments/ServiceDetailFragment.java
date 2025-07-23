@@ -1,36 +1,37 @@
 package com.prm.android.bloodlinedna.dnaservices.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.gson.Gson;
+import com.prm.android.bloodlinedna.DnaPrincipal;
 import com.prm.android.bloodlinedna.R;
+import com.prm.android.bloodlinedna.auth.AuthActivity;
 import com.prm.android.bloodlinedna.dnaservices.ServiceViewModel;
 import com.prm.android.bloodlinedna.dnaservices.adapters.ProcessTemplateStepAdapter;
+import com.prm.android.bloodlinedna.dnaservices.booking.ServiceBookingActivity;
 import com.prm.android.bloodlinedna.dnaservices.listener.ServiceDetailCallback;
-import com.prm.android.bloodlinedna.models.services.BookingSelection;
+import com.prm.android.bloodlinedna.models.services.booking.BookingSelection;
 import com.prm.android.bloodlinedna.models.services.ProcessTemplate;
 import com.prm.android.bloodlinedna.models.services.ServiceDetail;
 import com.prm.android.bloodlinedna.models.services.ServicePrice;
-
-import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -56,7 +57,7 @@ public class ServiceDetailFragment extends Fragment implements ServiceDetailCall
     private TextView specialFreeView;
     private TextView priceView;
 
-    private ProcessTemplateStepAdapter stepAdapter = new ProcessTemplateStepAdapter();
+    private final ProcessTemplateStepAdapter stepAdapter = new ProcessTemplateStepAdapter();
 
     private ServiceViewModel serviceViewModel;
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
@@ -73,6 +74,7 @@ public class ServiceDetailFragment extends Fragment implements ServiceDetailCall
     private double totalPrice = 0;
     private SwitchMaterial specialSwitch;
     private SwitchMaterial fastSwitch;
+    private AppCompatButton chooseButton;
 
     public ServiceDetailFragment() {
         super(R.layout.fragment_dna_service_detail);
@@ -98,6 +100,7 @@ public class ServiceDetailFragment extends Fragment implements ServiceDetailCall
             }
             loadingView.setVisibility(View.INVISIBLE);
         });
+
     }
 
     @Override
@@ -151,6 +154,40 @@ public class ServiceDetailFragment extends Fragment implements ServiceDetailCall
             calPrice.setValue("Special: " + isSpecialSample);
         });
 
+        chooseButton.setOnClickListener(v -> {
+            if (DnaPrincipal.getInstance().getToken() == null) {
+                new AlertDialog.Builder(requireContext()) // If inside an Activity
+                        .setTitle("")
+                        .setMessage("Vui lòng đăng nhập để tiếp tục đặt hẹn")
+                        .setPositiveButton("Đăng nhập", (dialog, which) -> {
+                            Intent intent = new Intent(requireContext(), AuthActivity.class);
+                            intent.putExtra(AuthActivity.ACTION_KEY, AuthActivity.SIGN_IN);
+                            startActivity(intent);
+                        })
+                        .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
+                        .show();
+
+                return;
+            }
+
+            BookingSelection bookingSelection = new BookingSelection();
+
+            bookingSelection.setServiceId(serviceViewModel.selectedServiceId.get());
+            bookingSelection.setServicePriceId(servicePrice.getServiceId());
+            bookingSelection.setPackageId(servicePrice.getId());
+            bookingSelection.setServiceType(selectedServiceType);
+            bookingSelection.setPriority(isPriority);
+            bookingSelection.setSpecialSample(isSpecialSample);
+            bookingSelection.setFinalPrice(totalPrice);
+
+            FragmentActivity fragmentActivity = requireActivity();
+
+            Intent intent = new Intent(fragmentActivity, ServiceBookingActivity.class);
+            Gson gson = new Gson();
+            intent.putExtra("booking_selection", gson.toJson(bookingSelection));
+            startActivity(intent);
+        });
+
         stepList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         stepList.setAdapter(stepAdapter);
     }
@@ -173,6 +210,7 @@ public class ServiceDetailFragment extends Fragment implements ServiceDetailCall
         priceView = view.findViewById(R.id.fragment_dna_detail_service_price_view);
         specialSwitch = view.findViewById(R.id.fragment_dna_detail_service_special_switch);
         fastSwitch = view.findViewById(R.id.fragment_dna_detail_service_fast_switch);
+        chooseButton = view.findViewById(R.id.fragment_dna_detail_service_choose_button);
     }
 
     @SuppressLint("SetTextI18n")

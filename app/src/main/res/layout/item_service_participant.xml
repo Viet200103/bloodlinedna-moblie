@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:animateLayoutChanges="true"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Người tham gia 1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:drawablePadding="6dp"
+            android:layout_marginBottom="12dp"
+            app:drawableStartCompat="@drawable/ic_person"
+            tools:ignore="HardcodedText" />
+
+        <!-- Họ và Tên -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ và Tên *"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="VD. Nguyễn Văn A"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText"/>
+
+        <!-- Mối quan hệ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mối quan hệ *"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/spnRelation"
+            android:layout_width="match_parent"
+            android:padding="12dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Ngày sinh -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh *"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtBirthDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/yyyy"
+            android:focusable="false"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            tools:ignore="HardcodedText"/>
+
+        <!-- Giới tính -->
+        <TextView
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giới tính xét nghiệm *"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/spnGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Loại mẫu -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Loại mẫu xét nghiệm *"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/spnSampleType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Phương thức thu mẫu -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phương thức thu mẫu *"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"/>
+
+        <RadioGroup
+            android:id="@+id/rgMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="6dp">
+
+            <RadioButton
+                android:id="@+id/rbHome"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tự thu mẫu tại nhà (Gửi Kit)"
+                tools:ignore="HardcodedText"/>
+
+            <RadioButton
+                android:id="@+id/rbStaff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhân viên đến thu mẫu"
+                tools:ignore="HardcodedText"/>
+
+            <RadioButton
+                android:id="@+id/rbOffice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thu mẫu tại cơ sở"
+                tools:ignore="HardcodedText"/>
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Địa chỉ *"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số nhà, đường, phường/xã"
+                android:background="@drawable/bg_input"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"
+                tools:ignore="HardcodedText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Ngày hẹn"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtAppointmentDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_input"
+                android:hint="dd/mm/yyyy"
+                android:focusable="false"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"
+                tools:ignore="HardcodedText"/>
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:id="@+id/typeInfoContainer"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="6dp">-->
+
+<!--            -->
+
+<!--            <LinearLayout-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="4dp"-->
+<!--                    android:text="Giờ hẹn"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="14sp"-->
+<!--                    tools:ignore="HardcodedText"/>-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/spnTimeSlot"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:background="@drawable/bg_input"-->
+<!--                    android:layout_marginBottom="12dp"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

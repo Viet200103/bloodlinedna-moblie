@@ -25,11 +25,11 @@ import okhttp3.ResponseBody;
 
 public class ServiceViewModel extends ViewModel {
     private OkHttpClient client = OkHttpClientProvider.getInstance();
+
     private final Gson gson = new Gson();
     private final HttpUrl serviceUrl = HttpUrl.parse( BuildConfig.API_BASE_URL + "/services");
 
     public AtomicInteger selectedServiceId = null;
-
 
     public void getServiceById(int serviceId, @NonNull ServiceDetailCallback callback) {
 

@@ -347,7 +347,7 @@
 
                         <!-- Button Chọn Gói -->
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnChoose"
+                            android:id="@+id/fragment_dna_detail_service_choose_button"
                             android:background="@drawable/bl_button_primary"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
